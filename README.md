@@ -39,18 +39,19 @@ Ejercicios
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
-<img src="Captura de pantalla 2020-10-25 a las 17.38.52.png" width="640" align="center">
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/2.png)
+
 
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
 >Como podemos observar en la siguiente captura, a veces hay una breve diferencia temporal entre la manual (la transcription inferior) y la automática (la superior) y a veces no existe una diferencia notable. No pensamos que dicha diferencia influya demasiado en el correcto funcionamiento de nuestro programa.
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/3.png)
 
-<img src="3.png" width="333" align="center">
 
 >Lo que si que repercute es que, algunas veces, sin practicamente haber fluctuaciones en el audio, se produce el siguiente fenómeno
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/4.png)
 
-<img src="4" width="640" align="center">
 
 >Como vemos, en el trascription automático se puede apreciar unos cambios de estado sin sentido. 
 
@@ -58,11 +59,12 @@ Ejercicios
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/5.jpg)
 
-<img src="5" width="640" align="center">
 
 >Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada (94.139%) esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas “complicaciones” para el programa como por ejemplo palabras acabadas en oclusivas o silencios muy cortos o tramas de voz también cortas, como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
 Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro algoritmo.
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/6.png)
 
 <img src="6" width="640" align="center">
 
@@ -74,7 +76,7 @@ Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar com
 
 >Otros aspectos que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz, el razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma(destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superarse el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida,se debería considerar como una trama de Silencio y no como Voz.
 Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
-
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/7.jpeg)
 <img src="7" width="640" align="center">
 
 >El audio es la siguiente frase:
