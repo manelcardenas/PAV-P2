@@ -156,15 +156,6 @@ if (sndfile_out != 0) {
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
 
 
-### Contribuciones adicionales y/o comentarios acerca de la práctica
-
-- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 
-  parámetros alternativos, etc.).
-
-- Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
-  considere de interés de cara a su evaluación.
-  
-
 Conclusiones
 ------------
 >En esta segunda práctica, hemos aprendido a trabajar con herramientas como el GitHub o el docopt y hemos extendido nuestros conocimientos en otras que habíamos aprendido en la práctica 1 como el Wavesurfer. También ha servido para repasar muchos conceptos de teoría y ver gráficamente la importancia de la tasa de cruces o la potencia media.
