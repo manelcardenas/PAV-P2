@@ -17,19 +17,24 @@ Ejercicios
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
-	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
-	  estar seguros de que un segmento de señal se corresponde con voz.
+* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para estar seguros de que un segmento de señal se corresponde con voz.
 	  
 >Como se puede ver, el valor de este primer pico es de -36.56 y se trata de ruido, que se debería considerar como Silencio, teniendo en cuenta esto y que el resto de picos más altos todos son de voz, cualquier valor del umbral por encima de este serviria para asegurar que un segmento es de Voz y no de Silencio.
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/11.jpeg)
 
-	* Duración mínima razonable de los segmentos de voz y silencio.
+* Duración mínima razonable de los segmentos de voz y silencio.
+	
 >Como podemos ver en, la length mínima aproximada que podemos obtener de Silencio es de 0.091segundos
 >Para determinar la mínima length aproximada de un segmento Voz seguimos el mismo procedimiento y obtenemos que es 0.552 segundos.
 >Podemos ver como esta gran diferencia entre tamaño de tramas será muy importante para poder mejorar el algoritmo.
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/12.jpeg)
 
-	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
 >A parte de poder apreciar como en los silencios la tasa se eleva mucho, podemos ver cómo en algunos fonemas concretos se llega a unos valores pico muy elevados. Estos fonemas son mayoritariamente las fricativas |s| y |f| esto puede ser de gran ayuda ya que de esta manera podemos garantizar que si alguna trama tiene un valor de zrc muy elevado, por mucho que no supere el umbral de potencia, ha de ser considerado como Voz ya que se tratará de una fricativa.
 
 
@@ -48,10 +53,14 @@ Ejercicios
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
 >Como podemos observar en la siguiente captura, a veces hay una breve diferencia temporal entre la manual (la transcription inferior) y la automática (la superior) y a veces no existe una diferencia notable. No pensamos que dicha diferencia influya demasiado en el correcto funcionamiento de nuestro programa.
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/3.png)
 
 
 >Lo que si que repercute es que, algunas veces, sin practicamente haber fluctuaciones en el audio, se produce el siguiente fenómeno
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/4.png)
 
 
@@ -67,6 +76,8 @@ Ejercicios
 
 >Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada (94.139%) esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas “complicaciones” para el programa como por ejemplo palabras acabadas en oclusivas o silencios muy cortos o tramas de voz también cortas, como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
 Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro algoritmo.
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/6.png)
 
 
@@ -77,13 +88,12 @@ Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar com
 >Por lo que a la precisión respecta, las dificultades también van mucho en la misma línea que con la sensibilidad, pero como acertamos muchas más tramas de las que erramos, la precisión es más fácil de conseguir un valor elevado( siempre y cuando el fichero sea un poco largo).
 
 >Otros aspectos que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz, el razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma(destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superarse el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida,se debería considerar como una trama de Silencio y no como Voz.
-Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
+>Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
+
+
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/7.jpeg)
 
->El audio es la siguiente frase:
-
-*HOLA SÓC L’ALBERT.*
-
+>El audio es la siguiente frase: **Hola sóc l'Albert**
 >Uno de los motivos de tener una baja tasa de aciertos sería que una de las solo 3 palabras que forman el audio, acaba en oclusiva \[t] (concretamente sorda). Las consonantes oclusivas tienen la característica de que provocan una breve interrupción en la señal de voz, por lo tanto el programa lo suele interpretar como silencio, aunque forme parte de la voz. Además, que una de las únicas 3 palabras que se dicen en el audio, sea oclusiva y sorda, baja mucho la tasa de acierto. 	
 >Una forma de solucionar esto, es utilizando la tasa de cruces por cero, como se puede apreciar en la gráfica adjunta de la página 1, los fonemas que con la medida de la potencia media podrían dar problemas(ya que su valor de potencia está por debajo del umbral) con la medida de su tasa de cruces por cero queda muy claro que se tratan de tramas de Voz y no de Silencio cómo podría parecer, de esta manera, también es muy importante tener en cuenta que si una trama que se está considerando como posible silencio, si su tasa de cruces por cero es mayor que un cierto umbral que podemos definir nosotros mismo, esa trama será Voz y no influirá si su valor de potencia está por encima del umbral (k0) o no.				
 
