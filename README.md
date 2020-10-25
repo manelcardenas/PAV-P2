@@ -20,14 +20,14 @@ Ejercicios
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
-* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para estar seguros de que un segmento de señal se corresponde con voz.
+** Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para estar seguros de que un segmento de señal se corresponde con voz.
 	  
 >Como se puede ver, el valor de este primer pico es de -36.56 y se trata de ruido, que se debería considerar como Silencio, teniendo en cuenta esto y que el resto de picos más altos todos son de voz, cualquier valor del umbral por encima de este serviria para asegurar que un segmento es de Voz y no de Silencio.
 
 
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/11.jpeg)
 
-* Duración mínima razonable de los segmentos de voz y silencio.
+** Duración mínima razonable de los segmentos de voz y silencio.
 	
 >Como podemos ver en la imagen, la length mínima aproximada que podemos obtener de Silencio es de 0.091 segundos
 >Para determinar la mínima length aproximada de un segmento Voz seguimos el mismo procedimiento y obtenemos 0.552 segundos.
@@ -36,7 +36,7 @@ Ejercicios
 
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/12.jpeg)
 
-* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+** ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 
 >A parte de poder apreciar como en los silencios la tasa se eleva mucho, podemos ver cómo en algunos fonemas concretos se llega a unos valores pico muy elevados. Estos fonemas son mayoritariamente las fricativas |s| y |f| esto puede ser de gran ayuda ya que de esta manera podemos garantizar que si alguna trama tiene un valor de zrc muy elevado, por mucho que no supere el umbral de potencia, ha de ser considerado como Voz ya que se tratará de una fricativa.
 
