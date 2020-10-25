@@ -1,100 +1,7 @@
 PAV - P2: detección de actividad vocal (VAD)
 ============================================
 
-Esta práctica se distribuye a través del repositorio GitHub [Práctica 2](https://github.com/albino-pav/P2),
-y una parte de su gestión se realizará mediante esta web de trabajo colaborativo.  Al contrario que Git,
-GitHub se gestiona completamente desde un entorno gráfico bastante intuitivo. Además, está razonablemente
-documentado, tanto internamente, mediante sus [Guías de GitHub](https://guides.github.com/), como
-externamente, mediante infinidad de tutoriales, guías y vídeos disponibles gratuitamente en internet.
-
-
-Inicialización del repositorio de la práctica.
-----------------------------------------------
-
-Para cargar los ficheros en su ordenador personal debe seguir los pasos siguientes:
-
-*	Abra una cuenta GitHub para gestionar esta y el resto de prácticas del curso.
-*	Cree un repositorio GitHub con el contenido inicial de la práctica (sólo debe hacerlo uno de los
-	integrantes del grupo de laboratorio, cuya página GitHub actuará de repositorio central del grupo):
-	-	Acceda la página de la [Práctica 2](https://github.com/albino-pav/P2).
-	-	En la parte superior derecha encontrará el botón **`Fork`**. Apriételo y, después de unos segundos,
-		se creará en su cuenta GitHub un proyecto con el mismo nombre (**P2**). Si ya tuviera uno con ese 
-		nombre, se utilizará el nombre **P2-1**, y así sucesivamente.
-*	Habilite al resto de miembros del grupo como *colaboradores* del proyecto; de este modo, podrán
-	subir sus modificaciones al repositorio central:
-	-	En la página principal del repositorio, en la pestaña **:gear:`Settings`**, escoja la opción 
-		**Collaborators** y añada a su compañero de prácticas.
-	-	Éste recibirá un email solicitándole confirmación. Una vez confirmado, tanto él como el
-		propietario podrán gestionar el repositorio, por ejemplo: crear ramas en él o subir las
-		modificaciones de su directorio local de trabajo al repositorio GitHub.
-*	En la página principal del repositorio, localice el botón **Branch: master** y úselo para crear
-	una rama nueva con los primeros apellidos de los integrantes del equipo de prácticas separados por
-	guion (**fulano-mengano**).
-*	Todos los miembros del grupo deben realizar su copia local en su ordenador personal.
-	-	Copie la dirección de su copia del repositorio apretando en el botón **Clone or download**.
-		Asegúrese de usar *Clone with HTTPS*.
-	-	Abra una sesión de Bash en su ordenador personal y vaya al directorio **PAV**. Desde ahí, ejecute:
-
-		```.sh
-		git clone dirección-del-fork-de-la-práctica
-		```
-
-	-	Vaya al directorio de la práctica `cd P2`.
-	-	Añada la etiqueta `origin` a su copia del repositorio. Esto es útil para facilitar los *push* y
-		*pull* al repositorio original:
-		```.sh
-		git remote add origin dirección-del-fork-de-la-práctica
-		```
-	-	Cambie a la rama **fulano-mengano** con la orden:
-
-		```.sh
-		git checkout fulano-mengano
-		```
-
-*	A partir de este momento, todos los miembros del grupo de prácticas pueden trabajar en su directorio
-	local del modo habitual.
-	-	También puede utilizar el repositorio remoto como repositorio central para el trabajo colaborativo
-		de los distintos miembros del grupo de prácticas; o puede serle útil usarlo como copia de
-		seguridad.
-	-	Cada vez que quiera subir sus cambios locales al repositorio GitHub deberá confirmar los
-		cambios en su directorio local:
-
-		```.sh
-		git add .
-		git commit -m "Mensaje del commit"
-		```
-
-		y, a continuación, subirlos con la orden:
-
-		```.sh
-		git push -u origin fulano-mengano
-		```
-
-*	Al final de la práctica, la rama **fulano-mengano** del repositorio GitHub servirá para remitir la
-	práctica para su evaluación utilizando el mecanismo *pull request*.
-	-	Vaya a la página principal de la copia del repositorio y asegúrese de estar en la rama
-		**fulano-mengano**.
-	-	Pulse en el botón **New pull request**, y siga las instrucciones de GitHub.
-
-
-Entrega de la práctica.
------------------------
-
-Responda, en este mismo documento (README.md), los ejercicios indicados a continuación. Este documento es
-un fichero de texto escrito con un formato denominado _**markdown**_. La principal característica de este
-formato es que, manteniendo la legibilidad cuando se visualiza con herramientas en modo texto (`more`,
-`less`, editores varios, ...), permite amplias posibilidades de visualización con formato en una amplia
-gama de aplicaciones; muy notablemente, **GitHub**, **Doxygen** y **Facebook** (ciertamente, :eyes:).
-
-En GitHub. cuando existe un fichero denominado README.md en el directorio raíz de un repositorio, se
-interpreta y muestra al entrar en el repositorio.
-
-Debe redactar las respuestas a los ejercicios usando Markdown. Puede encontrar información acerca de su
-sintáxis en la página web [Sintaxis de Markdown](https://daringfireball.net/projects/markdown/syntax).
-También puede consultar el documento adjunto [MARKDOWN.md](MARKDOWN.md), en el que se enumeran los
-elementos más relevantes para completar la redacción de esta práctica.
-
-Recuerde realizar el *pull request* una vez completada la práctica.
+>Introducción
 
 Ejercicios
 ----------
@@ -104,6 +11,10 @@ Ejercicios
 - Etiquete manualmente los segmentos de voz y silencio del fichero grabado al efecto. Inserte, a 
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
+
+>Empezando por la gráfica de arriba, el orden es el siguiente: ZCR, POT, AMP y señal .wav. Hemos usado el algoritmo de las práctica 1 para obtener las gráficas. 
+
+<img src="1" width="640" align="center">
 
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
@@ -124,12 +35,49 @@ Ejercicios
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+<img src="Captura de pantalla 2020-10-25 a las 17.38.52.png" width="640" align="center">
+
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+>Como podemos observar en la siguiente captura, a veces hay una breve diferencia temporal entre la manual (la transcription inferior) y la automática (la superior) y a veces no existe una diferencia notable. No pensamos que dicha diferencia influya demasiado en el correcto funcionamiento de nuestro programa.
+
+<img src="3" width="333" align="center">
+
+>Lo que si que repercute es que, algunas veces, sin practicamente haber fluctuaciones en el audio, se produce el siguiente fenómeno
+
+<img src="4" width="640" align="center">
+
+>Como vemos, en el trascription automático se puede apreciar unos cambios de estado sin sentido. 
+
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+
+<img src="5" width="640" align="center">
+
+>Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada (94.139%) esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas “complicaciones” para el programa como por ejemplo palabras acabadas en oclusivas o silencios muy cortos o tramas de voz también cortas, como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
+Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro algoritmo.
+
+<img src="6" width="640" align="center">
+
+>El resultado final de analizar todos los ficheros de la carpeta db.v4 es de 89.576% que pese a ser un valor bastante elevado, no es tan óptimo como desearíamos o como hemos obtenido en nuestro fichero .wav esto es debido a bastantes elementos.
+
+>Empezaremos hablando de la sensibilidad y precisión del algoritmo, tras analizar todos los ficheros, consideramos que donde más problemas aparecen es en la sensibilidad, entendemos que pueda ser así ya que uno de los mayores problemas que consideramos que tiene nuestro algoritmo es la no identificación de consonantes oclusivas, muchas de las veces que se acaba una palabra con este tipo de fonemas, nuestro algoritmo no está totalmente implementado para identificarlo y los considera como Silence cuando en realidad es trata de Voice, por este motivo la sensibilidad en algunos ficheros con bastantes palabras acabadas en estos fonemas pueden presentar una tasa de sensibilidad muy baja(más adelante exponemos un ejemplo). Por otro lado, el ruido de fondo también repercute negativamente en nuestro algoritmo, al no haber llegado a desarrollar de forma total los umbrales, si un pico de ruido los supera, podría llegar a ser considerado como Voz en vez de Silencio y esto también afecta a la hora de obtener la tasa de la sensibilidad. Como se pide en la Ampliación 1, una muy buena opción hubiese sido poner todas las tramas de Silencio a 0 para así conseguir una mayor claridad entre Silencio y Voz y que ningún pico de ruido se acercara a los umbrales, pero eso lo explicaremos más detalladamente en la Ampliación 1.
+
+>Por lo que a la precisión respecta, las dificultades también van mucho en la misma línea que con la sensibilidad, pero como acertamos muchas más tramas de las que erramos, la precisión es más fácil de conseguir un valor elevado( siempre y cuando el fichero sea un poco largo).
+
+>Otros aspectos que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz, el razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma(destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superarse el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida,se debería considerar como una trama de Silencio y no como Voz.
+Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
+
+<img src="7" width="640" align="center">
+
+>El audio es la siguiente frase:
+
+*HOLA SÓC L’ALBERT.*
+
+>Uno de los motivos de tener una baja tasa de aciertos sería que una de las solo 3 palabras que forman el audio, acaba en oclusiva \[t] (concretamente sorda). Las consonantes oclusivas tienen la característica de que provocan una breve interrupción en la señal de voz, por lo tanto el programa lo suele interpretar como silencio, aunque forme parte de la voz. Además, que una de las únicas 3 palabras que se dicen en el audio, sea oclusiva y sorda, baja mucho la tasa de acierto. 	
 
 
 ### Trabajos de ampliación
@@ -155,7 +103,6 @@ Ejercicios
   considere de interés de cara a su evaluación.
 
 
-### Antes de entregar la práctica
 
 Recuerde comprobar que el repositorio cuenta con los códigos correctos y en condiciones de ser 
 correctamente compilados con la orden `meson bin; ninja -C bin`. El programa generado (`bin/vad`) será
