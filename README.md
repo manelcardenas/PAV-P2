@@ -26,8 +26,8 @@ Ejercicios
 
 * Duración mínima razonable de los segmentos de voz y silencio.
 	
->Como podemos ver en, la length mínima aproximada que podemos obtener de Silencio es de 0.091segundos
->Para determinar la mínima length aproximada de un segmento Voz seguimos el mismo procedimiento y obtenemos que es 0.552 segundos.
+>Como podemos ver en la imagen, la length mínima aproximada que podemos obtener de Silencio es de 0.091 segundos
+>Para determinar la mínima length aproximada de un segmento Voz seguimos el mismo procedimiento y obtenemos 0.552 segundos.
 >Podemos ver como esta gran diferencia entre tamaño de tramas será muy importante para poder mejorar el algoritmo.
 
 
@@ -42,6 +42,8 @@ Ejercicios
 
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal tan
   exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+
+>El código está en el github.
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
@@ -74,29 +76,33 @@ Ejercicios
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/5.jpg)
 
 
->Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada (94.139%) esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas “complicaciones” para el programa como por ejemplo palabras acabadas en oclusivas o silencios muy cortos o tramas de voz también cortas, como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
-Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro algoritmo.
+>Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada **(94.139%)** esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas _“complicaciones”_ para el programa. Como _"complicaciones"_ se entiende palabras acabadas en oclusivas, silencios muy cortos o tramas de voz  cortas, tal y como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
+Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro programa.
 
 
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/6.png)
 
 
->El resultado final de analizar todos los ficheros de la carpeta db.v4 es de 89.576% que pese a ser un valor bastante elevado, no es tan óptimo como desearíamos o como hemos obtenido en nuestro fichero .wav esto es debido a bastantes elementos.
+>El resultado final de analizar todos los ficheros de la carpeta db.v4 es de **89.576%**, que pese a ser un valor bastante elevado, no es tan óptimo como desearíamos o como hemos obtenido en nuestro fichero .wav. Esto es debido a bastantes elementos.
 
->Empezaremos hablando de la sensibilidad y precisión del algoritmo, tras analizar todos los ficheros, consideramos que donde más problemas aparecen es en la sensibilidad, entendemos que pueda ser así ya que uno de los mayores problemas que consideramos que tiene nuestro algoritmo es la no identificación de consonantes oclusivas, muchas de las veces que se acaba una palabra con este tipo de fonemas, nuestro algoritmo no está totalmente implementado para identificarlo y los considera como Silence cuando en realidad es trata de Voice, por este motivo la sensibilidad en algunos ficheros con bastantes palabras acabadas en estos fonemas pueden presentar una tasa de sensibilidad muy baja(más adelante exponemos un ejemplo). Por otro lado, el ruido de fondo también repercute negativamente en nuestro algoritmo, al no haber llegado a desarrollar de forma total los umbrales, si un pico de ruido los supera, podría llegar a ser considerado como Voz en vez de Silencio y esto también afecta a la hora de obtener la tasa de la sensibilidad. Como se pide en la Ampliación 1, una muy buena opción hubiese sido poner todas las tramas de Silencio a 0 para así conseguir una mayor claridad entre Silencio y Voz y que ningún pico de ruido se acercara a los umbrales, pero eso lo explicaremos más detalladamente en la Ampliación 1.
+>Empezaremos hablando de la **sensibilidad y precisión** del programa. 
 
->Por lo que a la precisión respecta, las dificultades también van mucho en la misma línea que con la sensibilidad, pero como acertamos muchas más tramas de las que erramos, la precisión es más fácil de conseguir un valor elevado( siempre y cuando el fichero sea un poco largo).
+>Tras analizar todos los ficheros, consideramos que donde más problemas aparecen es en la sensibilidad. Por un lado, entendemos que es así ya que uno de los mayores problemas que consideramos que tiene nuestro algoritmo es la no identificación de consonantes oclusivas... Cuando una palabra acaba con este tipo de fonemas, nuestro algoritmo no está totalmente implementado para identificarlo y los considera como Silence cuando en realidad es trata de Voice! ¿Por qué sucede esto? Bien, las consonantes oclusivas tienen la característica de que provocan una breve interrupción en la señal de voz, por lo tanto el programa lo suele interpretar como silencio, aunque forme parte de la voz. Por este motivo, la sensibilidad en algunos ficheros con bastantes palabras acabadas en estos fonemas pueden presentar una tasa de sensibilidad muy baja (más adelante se expone un ejemplo). Por otro lado, el ruido de fondo también repercute negativamente en los resultados, puesto que al no haber llegado a desarrollar de forma total los umbrales, si un pico de ruido los supera, podría llegar a ser considerado como Voz en vez de Silencio y esto también afecta a la hora de obtener la tasa de la sensibilidad. Como se pide en la Ampliación 1, una muy buena opción hubiese sido poner todas las tramas de Silencio a 0 para así conseguir una mayor claridad entre Silencio y Voz y que ningún pico de ruido se acercara a los umbrales, pero eso lo explicaremos más detalladamente en la Ampliación 1. 
 
->Otros aspectos que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz, el razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma(destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superarse el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida,se debería considerar como una trama de Silencio y no como Voz.
+>Por lo que a la precisión respecta, las dificultades también van mucho en la misma línea que con la sensibilidad, pero como acertamos muchas más tramas de las que erramos, la precisión es más fácil de conseguir un valor elevado (siempre y cuando el fichero sea un poco largo).
+
+>Otro aspecto que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz. El razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma (destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superaría el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida, se debería considerar como una trama de Silencio y no como Voz.
+
 >Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
 
 
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/7.jpeg)
 
 >El audio es la siguiente frase: **Hola sóc l'Albert**
->Uno de los motivos de tener una baja tasa de aciertos sería que una de las solo 3 palabras que forman el audio, acaba en oclusiva \[t] (concretamente sorda). Las consonantes oclusivas tienen la característica de que provocan una breve interrupción en la señal de voz, por lo tanto el programa lo suele interpretar como silencio, aunque forme parte de la voz. Además, que una de las únicas 3 palabras que se dicen en el audio, sea oclusiva y sorda, baja mucho la tasa de acierto. 	
->Una forma de solucionar esto, es utilizando la tasa de cruces por cero, como se puede apreciar en la gráfica adjunta de la página 1, los fonemas que con la medida de la potencia media podrían dar problemas(ya que su valor de potencia está por debajo del umbral) con la medida de su tasa de cruces por cero queda muy claro que se tratan de tramas de Voz y no de Silencio cómo podría parecer, de esta manera, también es muy importante tener en cuenta que si una trama que se está considerando como posible silencio, si su tasa de cruces por cero es mayor que un cierto umbral que podemos definir nosotros mismo, esa trama será Voz y no influirá si su valor de potencia está por encima del umbral (k0) o no.				
 
+>Uno de los motivos de tener una baja tasa de aciertos sería que una de las solo 3 palabras que forman el audio, acaba en oclusiva \[t] (concretamente sorda). Que una de las únicas 3 palabras que se dicen en el audio, sea oclusiva y sorda, baja mucho la tasa de acierto.
+
+>Una forma de solucionar esto es utilizando la tasa de cruces por cero. Como se puede apreciar en la primera gráfica adjunta, los fonemas que con la medida de la potencia media podrían dar problemas (los cuales su valor de potencia está por debajo del umbral) con la medida de su tasa de cruces por cero queda muy claro que se tratan de tramas de Voz y no de Silencio cómo podría parecer. De esta manera, también es muy importante tener en cuenta que si una trama que se está considerando como posible silencio tiene su tasa de cruces por cero  mayor que un cierto umbral (definido por nosotros mismos), esa trama será Voz y no influirá si su valor de potencia está por encima del umbral (k0) o no.				
 
 
 ### Trabajos de ampliación
@@ -106,7 +112,9 @@ Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar com
 - Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+  
 > Hemos desarrollado la siguiente solución para esta ampliación:
+
 > Al principio del código, rellenamos el fichero de salida con los datos. 
 
 ```c
@@ -128,13 +136,14 @@ if (sndfile_out != 0) {
 >Al poner el siguiente comando en la terminal:
 
 				bin/vad -i pav_4181.wav -o output.vad -w output.wav 
+				
 >generamos el audio de salida y no entendemos por qué motivo es exactamente igual al de entrada. Es decir, parece que no rellena con ceros los silencios. 
 
->Consideramos que muy probablemente el motivo por el que no rellena con ceros los silencios es que no se puede reescribir en un fichero ya anteriormente rellenado tan fácilmente como solo poniendo 
+>Consideramos que muy probablemente el motivo por el que no rellena con ceros los silencios es que no se puede reescribir en un fichero ya anteriormente se ha rellenado tan fácilmente con solo poniendo: 
 
 				sf_write_float(sndfile_out, buffer_zeros, frame_size);. 
 
->Habíamos pensado en utilizar un fichero auxiliar y rellenarlo la partes de Voz con buffer y las partes de Silencio con buffer_zeros, pero tras varios intentos y diferentes formas de llevarlo a cabo, al no lograrlo, decidimos centrarnos más en la segunda ampliación. Aunque sí que nos gustaría remarcar que sabemos que lograr un fichero final con los Silencios puestos a cero lograria una mucho mayor nitidez de la señal de audio y una anulación prácticamente total del ruido de fondo.
+>Habíamos pensado en utilizar un fichero auxiliar y rellenar la partes de Voz con buffer y las partes de Silencio con buffer_zeros, pero tras varios intentos y diferentes formas de llevarlo a cabo, al no lograrlo, decidimos centrarnos más en la segunda ampliación. Aunque sí que nos gustaría remarcar que sabemos que lograr un fichero final con los Silencios puestos a cero lograria una mucho mayor nitidez de la señal de audio y una anulación prácticamente total del ruido de fondo.
 
 
 #### Gestión de las opciones del programa usando `docopt_c`
