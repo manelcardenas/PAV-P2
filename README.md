@@ -155,7 +155,6 @@ Ejercicios
   considere de interés de cara a su evaluación.
 
 
-### Antes de entregar la práctica
 
 Recuerde comprobar que el repositorio cuenta con los códigos correctos y en condiciones de ser 
 correctamente compilados con la orden `meson bin; ninja -C bin`. El programa generado (`bin/vad`) será
