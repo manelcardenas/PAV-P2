@@ -1,12 +1,6 @@
 PAV - P2: detección de actividad vocal (VAD)
 ============================================
 
-<<<<<<< HEAD
-Introducción
-=======
->Introducción
->>>>>>> 92645f366ff94ce7e810703025b95e6ab8210763
-
 Ejercicios
 ----------
 
@@ -25,10 +19,18 @@ Ejercicios
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
+	  
+>Como se puede ver, el valor de este primer pico es de -36.56 y se trata de ruido, que se debería considerar como Silencio, teniendo en cuenta esto y que el resto de picos más altos todos son de voz, cualquier valor del umbral por encima de este serviria para asegurar que un segmento es de Voz y no de Silencio.
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/11.jpeg)
 
 	* Duración mínima razonable de los segmentos de voz y silencio.
+>Como podemos ver en, la length mínima aproximada que podemos obtener de Silencio es de 0.091segundos
+>Para determinar la mínima length aproximada de un segmento Voz seguimos el mismo procedimiento y obtenemos que es 0.552 segundos.
+>Podemos ver como esta gran diferencia entre tamaño de tramas será muy importante para poder mejorar el algoritmo.
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/12.jpeg)
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+>A parte de poder apreciar como en los silencios la tasa se eleva mucho, podemos ver cómo en algunos fonemas concretos se llega a unos valores pico muy elevados. Estos fonemas son mayoritariamente las fricativas |s| y |f| esto puede ser de gran ayuda ya que de esta manera podemos garantizar que si alguna trama tiene un valor de zrc muy elevado, por mucho que no supere el umbral de potencia, ha de ser considerado como Voz ya que se tratará de una fricativa.
 
 
 ### Desarrollo del detector de actividad vocal
@@ -59,6 +61,7 @@ Ejercicios
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+  
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/5.jpg)
 
 
@@ -82,6 +85,8 @@ Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%)
 *HOLA SÓC L’ALBERT.*
 
 >Uno de los motivos de tener una baja tasa de aciertos sería que una de las solo 3 palabras que forman el audio, acaba en oclusiva \[t] (concretamente sorda). Las consonantes oclusivas tienen la característica de que provocan una breve interrupción en la señal de voz, por lo tanto el programa lo suele interpretar como silencio, aunque forme parte de la voz. Además, que una de las únicas 3 palabras que se dicen en el audio, sea oclusiva y sorda, baja mucho la tasa de acierto. 	
+>Una forma de solucionar esto, es utilizando la tasa de cruces por cero, como se puede apreciar en la gráfica adjunta de la página 1, los fonemas que con la medida de la potencia media podrían dar problemas(ya que su valor de potencia está por debajo del umbral) con la medida de su tasa de cruces por cero queda muy claro que se tratan de tramas de Voz y no de Silencio cómo podría parecer, de esta manera, también es muy importante tener en cuenta que si una trama que se está considerando como posible silencio, si su tasa de cruces por cero es mayor que un cierto umbral que podemos definir nosotros mismo, esa trama será Voz y no influirá si su valor de potencia está por encima del umbral (k0) o no.				
+
 
 
 ### Trabajos de ampliación
@@ -91,6 +96,36 @@ Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%)
 - Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+> Hemos desarrollado la siguiente solución para esta ampliación:
+> Al principio del código, rellenamos el fichero de salida con los datos. 
+
+```c
+if (sndfile_out != 0) {
+      sf_write_float(sndfile_out, buffer, frame_size);
+      /* TODO: copy all the samples into sndfile_out */
+    }
+```
+>Hacia el final, en el caso de que el estado sea silencio, escribimos ceros. 
+
+```c
+if (sndfile_out != 0) {
+      /* TODO: go back and write zeros in silence segments */
+        if(state == ST_SILENCE ){
+        sf_write_float(sndfile_out, buffer_zeros, frame_size);
+      }
+    }
+```
+>Al poner el siguiente comando en la terminal:
+
+				bin/vad -i pav_4181.wav -o output.vad -w output.wav 
+>generamos el audio de salida y no entendemos por qué motivo es exactamente igual al de entrada. Es decir, parece que no rellena con ceros los silencios. 
+
+>Consideramos que muy probablemente el motivo por el que no rellena con ceros los silencios es que no se puede reescribir en un fichero ya anteriormente rellenado tan fácilmente como solo poniendo 
+
+				sf_write_float(sndfile_out, buffer_zeros, frame_size);. 
+
+>Habíamos pensado en utilizar un fichero auxiliar y rellenarlo la partes de Voz con buffer y las partes de Silencio con buffer_zeros, pero tras varios intentos y diferentes formas de llevarlo a cabo, al no lograrlo, decidimos centrarnos más en la segunda ampliación. Aunque sí que nos gustaría remarcar que sabemos que lograr un fichero final con los Silencios puestos a cero lograria una mucho mayor nitidez de la señal de audio y una anulación prácticamente total del ruido de fondo.
+
 
 #### Gestión de las opciones del programa usando `docopt_c`
 
@@ -106,8 +141,3 @@ Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%)
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
 
-
-
-Recuerde comprobar que el repositorio cuenta con los códigos correctos y en condiciones de ser 
-correctamente compilados con la orden `meson bin; ninja -C bin`. El programa generado (`bin/vad`) será
-el usado, sin más opciones, para realizar la evaluación *ciega* del sistema.
