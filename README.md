@@ -73,7 +73,7 @@ Ejercicios
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
   
-![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/5.jpg)
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/5.jpeg)
 
 
 >Como se puede ver, en nuestro audio tenemos una tasa de acierto bastante elevada **(94.139%)** esto es debido a que grabamos un audio sin apenas ruido de fondo y sin demasiadas _“complicaciones”_ para el programa. Como _"complicaciones"_ se entiende palabras acabadas en oclusivas, silencios muy cortos o tramas de voz  cortas, tal y como explicaremos más adelante, cualquiera de las características anteriores puede llegar a repercutir mucho a la hora de analizar una señal.
