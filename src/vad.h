@@ -1,9 +1,10 @@
 #ifndef _VAD_H
 #define _VAD_H
 #include <stdio.h>
+#include "pav_analysis.h"
 
 /* TODO: add the needed states */
-typedef enum {ST_UNDEF=0, ST_SILENCE, ST_VOICE, ST_INIT} VAD_STATE;
+typedef enum {ST_UNDEF=0, ST_SILENCE, ST_VOICE, ST_MbSILENCE,ST_MbVOICE, ST_INIT} VAD_STATE;
 
 /* Return a string label associated to each state */
 const char *state2str(VAD_STATE st);
@@ -13,9 +14,12 @@ const char *state2str(VAD_STATE st);
 
 typedef struct {
   VAD_STATE state;
+  float k0,k1,k2;
+  float a0,state_time;
   float sampling_rate;
   unsigned int frame_length;
   float last_feature; /* for debuggin purposes */
+  float aux;
 } VAD_DATA;
 
 /* Call this function before using VAD: 
