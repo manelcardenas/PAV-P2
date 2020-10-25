@@ -155,12 +155,63 @@ if (sndfile_out != 0) {
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
 
+>Nos hemos querido centrar en usar el docopt para determinar el valor de los **umbrales** k1 y k2. 
+
+>Primero, hemos completado el fichero vad.docopt:
+
+```bash
+VAD - Voice Activity Detector
+
+Usage:
+   vad [options] -i <input-wav> -o <output-vad> [-w <output-wav>]
+   vad (-h | --help)
+   vad --version
+
+Options:
+   -i FILE, --input-wav=FILE   WAVE file for voice activity detection
+   -o FILE, --output-vad=FILE  Label file with the result of VAD
+   -w FILE, --output-wav=FILE  WAVE file with silences cleared
+   -v, --verbose  Show debug information
+   -h, --help     Show this screen
+   --version      Show the version of the project
+   -k float, --input_k1=float   Define first threshold k1
+   -q float, --input_k2=float   Define second threshold k2
+```
+
+>Luego hemos ejecutado docopt_c/docopt_c.py para generar la nueva cabecera src/vad_docopt.h. 
+>A continuación, hemos modificado el código de main_vad.c para que llame a la función docopt() y tenga en cuenta los nuevos argumentos, de la siguiente forma:
+
+```c
+...
+  float k1, k2;  
+  char	*input_k1, *input_k2;
+...
+DocoptArgs args = docopt(argc, argv, /* help */ 1, /* version */ "2.0");
+
+  verbose    = args.verbose ? DEBUG_VAD : 0;
+  input_wav  = args.input_wav;
+  output_vad = args.output_vad;
+  output_wav = args.output_wav;
+  //nou:
+  input_k1 = args.input_k1;
+  input_k2 = args.input_k2;
+
+  k1 = atof(input_k1);
+  k2 = atof(input_k2);
+
+  if (input_wav == 0 || output_vad == 0) {
+    fprintf(stderr, "%s\n", args.usage_pattern);
+    return -1;
+  }
+```
+>Usamos la funcion **atof()** ya que del vad.docopt nos llega char, y hemos de convertirlo a double (ya que los valores de nuestros umbrales k1 y k2 son números con decimales). Después de borrar el fichero vad_docopt.h que se encuentra en la carpeta src, hemos modificado el fichero meson.build por el que nos dice la memoria. 
+
 
 Conclusiones
 ------------
 >En esta segunda práctica, hemos aprendido a trabajar con herramientas como el GitHub o el docopt y hemos extendido nuestros conocimientos en otras que habíamos aprendido en la práctica 1 como el Wavesurfer. También ha servido para repasar muchos conceptos de teoría y ver gráficamente la importancia de la tasa de cruces o la potencia media.
 
->Nos gustaría comentar que, tal y como hemos ido mencionando durante la memoria, algunas de las partes de la práctica no hemos podido llegar a implementar los algoritmos hasta el nivel deseado, pero que ha sido más por un tema de dificultades con el lenguaje C ya que muchos de los apartados que no hemos conseguido implementar, los hemos desarrollado muy extensamente en esta memoria explicando cuales serian las pautas a seguir para poderlos llevar a cabo y cuales serian los conceptos a tener en cuenta en cada punto.
+>Nos gustaría comentar que, tal y como hemos ido mencionando durante la memoria, algunas de las partes de la práctica no hemos podido llegar a implementar los algoritmos hasta el nivel deseado, pero que ha sido más por un tema de dicultades con el lenguaje C ya que muchos de los apartados que no hemos conseguido implementar, los hemos desarrollado muy extensamente en esta memoria explicando cuales serian las pautas a seguir para poderlos llevar a cabo y cuales serian los conceptos a tener en cuenta en cada punto.
 
 >En relación al contenido de la práctica, nos ha resultado sorprendente la facilidad con la que se puede conseguir un reconocedor de voz bastante preciso pero de la misma manera, una vez se consigue un nivel alto de reconocimiento de voz, es igualmente sorprendente lo difícil que es mejorar el algoritmo. Hay muchos fonemas muy difíciles de ser identificados correctamente, como por ejemplo los oclusivos, y esto se podría enlazar con lo interesante que sería ver cómo respondería este mismo algoritmo a otro idioma... ya que otra cosa que nos hemos dado cuenta es que el reconocimiento de voz debe variar mucho entre diferentes idiomas, sobre todo si proceden de diferentes lenguas madre. De esta manera, una futura vía de investigación sería la nombrada anteriormente, utilizar nuestro reconocedor de voz con ficheros de otro idioma y comparar el resultado con un algoritmo fabricado para ese idioma en concreto, seguramente las diferencias serían muy notables.
 
