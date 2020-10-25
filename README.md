@@ -1,6 +1,8 @@
 PAV - P2: detección de actividad vocal (VAD)
 ============================================
 
+
+
 Ejercicios
 ----------
 
@@ -105,7 +107,8 @@ Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar com
 >Una forma de solucionar esto es utilizando la tasa de cruces por cero. Como se puede apreciar en la primera gráfica adjunta, los fonemas que con la medida de la potencia media podrían dar problemas (los cuales su valor de potencia está por debajo del umbral) con la medida de su tasa de cruces por cero queda muy claro que se tratan de tramas de Voz y no de Silencio cómo podría parecer. De esta manera, también es muy importante tener en cuenta que si una trama que se está considerando como posible silencio tiene su tasa de cruces por cero  mayor que un cierto umbral (definido por nosotros mismos), esa trama será Voz y no influirá si su valor de potencia está por encima del umbral (k0) o no.				
 
 
-### Trabajos de ampliación
+Trabajos de ampliación
+----------------------
 
 #### Cancelación del ruido en los segmentos de silencio
 
@@ -159,4 +162,15 @@ if (sndfile_out != 0) {
 
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
+  
+
+Conclusiones
+------------
+>En esta segunda práctica, hemos aprendido a trabajar con herramientas como el GitHub o el docopt y hemos extendido nuestros conocimientos en otras que habíamos aprendido en la práctica 1 como el Wavesurfer. También ha servido para repasar muchos conceptos de teoría y ver gráficamente la importancia de la tasa de cruces o la potencia media.
+
+>Nos gustaría comentar que, tal y como hemos ido mencionando durante la memoria, algunas de las partes de la práctica no hemos podido llegar a implementar los algoritmos hasta el nivel deseado, pero que ha sido más por un tema de dificultades con el lenguaje C ya que muchos de los apartados que no hemos conseguido implementar, los hemos desarrollado muy extensamente en esta memoria explicando cuales serian las pautas a seguir para poderlos llevar a cabo y cuales serian los conceptos a tener en cuenta en cada punto.
+
+>En relación al contenido de la práctica, nos ha resultado sorprendente la facilidad con la que se puede conseguir un reconocedor de voz bastante preciso pero de la misma manera, una vez se consigue un nivel alto de reconocimiento de voz, es igualmente sorprendente lo difícil que es mejorar el algoritmo. Hay muchos fonemas muy difíciles de ser identificados correctamente, como por ejemplo los oclusivos, y esto se podría enlazar con lo interesante que sería ver cómo respondería este mismo algoritmo a otro idioma... ya que otra cosa que nos hemos dado cuenta es que el reconocimiento de voz debe variar mucho entre diferentes idiomas, sobre todo si proceden de diferentes lenguas madre. De esta manera, una futura vía de investigación sería la nombrada anteriormente, utilizar nuestro reconocedor de voz con ficheros de otro idioma y comparar el resultado con un algoritmo fabricado para ese idioma en concreto, seguramente las diferencias serían muy notables.
+
+
 
