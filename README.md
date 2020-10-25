@@ -66,7 +66,6 @@ Ejercicios
 Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar como el porcentaje de la precisión es más elevado que el de la sensibilidad, pero en ambos casos el porcentaje final es bastante elevado. Más adelante y teniendo en cuenta el resto de ficheros .wav analizaremos más detenidamente la sensibilidad y precisión de nuestro algoritmo.
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/6.png)
 
-<img src="6" width="640" align="center">
 
 >El resultado final de analizar todos los ficheros de la carpeta db.v4 es de 89.576% que pese a ser un valor bastante elevado, no es tan óptimo como desearíamos o como hemos obtenido en nuestro fichero .wav esto es debido a bastantes elementos.
 
@@ -77,7 +76,6 @@ Por otra parte, analizando la sensibilidad y la precisión, podemos apreciar com
 >Otros aspectos que nos gustaría tener en cuenta es que sin llegar a estar implementado totalmente, deseábamos que nuestro algoritmo fuese capaz de detectar destellos de ruido y no considerarlos como Voz, el razonamiento que hemos intentado llevar a cabo, es que si una trama de Voz de duración muy reducida se encontraba entre tramas de Silencio, claramente se debería tratar de una falsa alarma(destello de ruido) y pese a que se pudiera llegar a interpretar como Voz, ya que superarse el umbral, teniendo en cuenta que se encuentra entre tramas de Silencio y que su duración es muy reducida,se debería considerar como una trama de Silencio y no como Voz.
 Hemos analizado un audio del cual tenemos una tasa de acierto muy baja (50.873%). 
 ![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/7.jpeg)
-<img src="7" width="640" align="center">
 
 >El audio es la siguiente frase:
 
