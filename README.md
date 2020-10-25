@@ -173,5 +173,11 @@ Conclusiones
 
 >En relación al contenido de la práctica, nos ha resultado sorprendente la facilidad con la que se puede conseguir un reconocedor de voz bastante preciso pero de la misma manera, una vez se consigue un nivel alto de reconocimiento de voz, es igualmente sorprendente lo difícil que es mejorar el algoritmo. Hay muchos fonemas muy difíciles de ser identificados correctamente, como por ejemplo los oclusivos, y esto se podría enlazar con lo interesante que sería ver cómo respondería este mismo algoritmo a otro idioma... ya que otra cosa que nos hemos dado cuenta es que el reconocimiento de voz debe variar mucho entre diferentes idiomas, sobre todo si proceden de diferentes lenguas madre. De esta manera, una futura vía de investigación sería la nombrada anteriormente, utilizar nuestro reconocedor de voz con ficheros de otro idioma y comparar el resultado con un algoritmo fabricado para ese idioma en concreto, seguramente las diferencias serían muy notables.
 
+>Finalmente, querríamos añadir una posible mejora que nos hubiese gustado implementar, la cual encontramos útil. La idea sería agrupar frames del mismo tipo consecutivos, para así reducir la tasa de error. Como se ve en la siguiente imagen, el resultado sería así (lo hemos modificado a mano).
+
+![imagen ](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/otra.png)
+
+
+
 
 
