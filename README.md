@@ -204,7 +204,7 @@ DocoptArgs args = docopt(argc, argv, /* help */ 1, /* version */ "2.0");
     return -1;
   }
 ```
->Usamos la funcion **atof()** ya que del vad.docopt nos llega char, y hemos de convertirlo a double (ya que los valores de nuestros umbrales k1 y k2 son números con decimales). Después de borrar el fichero vad_docopt.h que se encuentra en la carpeta src, hemos modificado el fichero meson.build por el que nos dice la memoria. 
+>Usamos la funcion **atof()** ya que del vad.docopt nos llega char, y hemos de convertirlo a double (ya que los valores de nuestros umbrales k1 y k2 son números con decimales). Después de borrar el fichero vad_docopt.h que se encuentra en la carpeta src, hemos modificado el fichero meson.build por el que nos dice la memoria.
 
 
 Conclusiones
