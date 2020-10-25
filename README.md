@@ -14,7 +14,7 @@ Ejercicios
 
 Empezando por la gráfica de arriba, el orden es el siguiente: ZCR, POT, AMP y señal .wav. Hemos usado el algoritmo de las práctica 1 para obtener las gráficas. 
 
-<img src="1.jpeg" width="640" align="center">
+							<img src="1.jpeg" width="640" align="center">
 
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
@@ -35,7 +35,7 @@ Empezando por la gráfica de arriba, el orden es el siguiente: ZCR, POT, AMP y s
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
-<img src="" width="640" align="center">
+<img src="" width="300" align="center">
 
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
