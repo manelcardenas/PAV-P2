@@ -46,7 +46,7 @@ Ejercicios
 
 >Como podemos observar en la siguiente captura, a veces hay una breve diferencia temporal entre la manual (la transcription inferior) y la automática (la superior) y a veces no existe una diferencia notable. No pensamos que dicha diferencia influya demasiado en el correcto funcionamiento de nuestro programa.
 
-<img src="3" width="333" align="center">
+<img src="3.png" width="333" align="center">
 
 >Lo que si que repercute es que, algunas veces, sin practicamente haber fluctuaciones en el audio, se produce el siguiente fenómeno
 
