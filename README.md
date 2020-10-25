@@ -1,6 +1,7 @@
 PAV - P2: detección de actividad vocal (VAD)
 ============================================
 
+>En esta práctica se intentará llevar a cabo un reconocedor de voz, diferenciando dentro de un fichero audio .wav las tramas que corresponden a señal de voz y las que corresponden a silencio o ruido. Se continuará con algunos de los algoritmos desarrollados en la práctica 1, como la tasa de cruce por ceros o la potencia media que se utilizaran para poder diferenciar entre las tramas de silencio y voz, también será interesante poder ver estos conceptos de teoría gráficamente, para así poder reforzar nuestros conocimientos sobre la interpretación de ficheros de audios. 
 
 
 Ejercicios
