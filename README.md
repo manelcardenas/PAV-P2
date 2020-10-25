@@ -19,7 +19,7 @@ Ejercicios
 >Empezando por la gráfica de arriba, el orden es el siguiente: ZCR, POT, AMP y señal .wav. Hemos usado el algoritmo de las práctica 1 para obtener las gráficas. 
 
 <img src="1" width="640" align="center">
-
+![](https://github.com/manelcardenas/PAV-P2/blob/Rodriguez-Cardenas/1.jpeg)
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
