@@ -155,7 +155,7 @@ if (sndfile_out != 0) {
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
 
->Nos hemos querido centrar en usar el docopt para determinar el valor de los **umbrales** k1 y k2. 
+>Nos hemos querido centrar en usar el docopt para determinar el valor de los **umbrales** k1 y k2.
 
 >Primero, hemos completado el fichero vad.docopt:
 
@@ -205,6 +205,8 @@ DocoptArgs args = docopt(argc, argv, /* help */ 1, /* version */ "2.0");
   }
 ```
 >Usamos la funcion **atof()** ya que del vad.docopt nos llega char, y hemos de convertirlo a double (ya que los valores de nuestros umbrales k1 y k2 son números con decimales). Después de borrar el fichero vad_docopt.h que se encuentra en la carpeta src, hemos modificado el fichero meson.build por el que nos dice la memoria.
+
+>  Nuestra intención, como hemos comentado al principio, era que gracias al docopt pudieramos hacer ensayos automáticos para llegar a los mejores valores de los umbrales k1 y k2. Nos faltaría pasarle los valores de los umbrales k1 y k2 al vad.c. No hemos pasado los valores aún porque nos da un segmentation fault...
 
 
 Conclusiones
